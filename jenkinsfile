@@ -1,6 +1,3 @@
-/*def tomcatWeb = 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\webapps'
-def tomcatBin = 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\bin'
-def tomcatStatus = ''*/
 pipeline  {
     agent any
     tools { 
@@ -39,27 +36,7 @@ pipeline  {
                     }
                 }
             }
-        }/*
-        stage('Build') {
-            steps {
-              sh 'mvn package'
-            }
         }
-         stage('Deploy to Tomcat'){
-         steps{
-             sh 'copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\"'
-             }
-           }
-              stage ('Start Tomcat Server') {
-              steps{
-                script{
-                    sleep(time:5,unit:"SECONDS") 
-                     sh "${tomcatBin}\\startup.bat"
-                     sleep(time:100,unit:"SECONDS")
-                }
-              }
-                 
-           }*/
          stage('Email Notification') {
             steps {
                mail bcc: '',

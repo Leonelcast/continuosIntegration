@@ -47,14 +47,14 @@ pipeline  {
         }
          stage('Deploy to Tomcat'){
          steps{
-             bat "copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
+             sh 'copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\"'
              }
            }
               stage ('Start Tomcat Server') {
               steps{
                 script{
                     sleep(time:5,unit:"SECONDS") 
-                     bat "${tomcatBin}\\startup.bat"
+                     sh "${tomcatBin}\\startup.bat"
                      sleep(time:100,unit:"SECONDS")
                 }
               }

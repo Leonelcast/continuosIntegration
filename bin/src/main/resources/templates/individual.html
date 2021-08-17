@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        header{
+            display: flex; justify-content: center; align-items: center;
+        }
+        #imagen{  display: inline-block;  display: flex; justify-content: center; align-items: center }
+        .container{margin-top: 45px;}
+        #botones{
+          display: flex; justify-content: center; align-items: center;
+        }
+        #imgdisplay{
+            height: 80%;
+            width:80%;
+        }
+        #card{
+            display: flex; justify-content: center; align-items: center;           
+            margin-right: 5px;
+        }
+        #principalnav{
+            margin-left: 50px;
+            margin-top: 20px;
+            float: left;
+            background-color: light-gray;
+        }
+        #icon1{
+            height: 50%;
+            width:50%;
+
+        }
+
+
+    </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<meta charset="utf-8"/>
+<title>Prueba Manager Application</title>
+</head>
+<body>
+<div>
+    <header>    
+        <h1>Catálogo de dispositivos</h1>
+               
+
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+    </nav>
+
+    <nav class="nav flex-column" id="principalnav" >
+        <a class="nav-link active" aria-current="page" href="#">Active</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </nav>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4" th:each ="dis : ${listaDis}" > 
+      
+            <div class="container">
+              <div class="row" id="imagen">
+                <img  th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(dis.foto1)}"  id="imgdisplay" alt="..."/>
+            
+              </div>
+              <div class="row" id="botones">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  Modificar
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                         
+                      <form action ="#" th:action="@{/updatePh}" th:object="${nuevo}"  method="POST" th:each ="prueba : ${listaDis}"> 
+                          <div class="form-group"> 
+                      
+                          <input    th:value="${prueba.id_bodega}" th:name="id_bodega"  />
+                          </div> 
+
+                          <div class="form-group"> 
+                            <label for="existencia">Existencia</label>    
+                            <input type="number" th:value="${prueba.existencia}" th:placeholder="${prueba.existencia}"  id="existencia" th:name="existencia" />
+                          </div>
+
+                          <div class="form-group"> 
+                            <label>Precio Lista</label>
+                              <input type="number" step="any"  th:name="precio_lista" th:value="${prueba.precio_lista}"   th:placeholder="${prueba.precio_lista}"/> 
+                            </div>
+  
+                            <div class="form-group"> 
+                              <label>Codigo modelo</label>
+                                <input type="text" th:value="${prueba.codigo_modelo}"  th:name="codigo_modelo" th:placeholder="${prueba.codigo_modelo}"/> 
+                            </div>
+  
+                           <div class="form-group"> 
+                           <label>RAM</label>
+                           <input type="number" th:name="ram" th:value="${prueba.ram}" th:placeholder="${prueba.ram}" />           
+                          </div>
+  
+                           <div class="form-group"> 
+                           <label>Almacenamiento</label>
+                           <input type="number" th:name="almacenamiento" th:value="${prueba.almacenamiento}" th:placeholder="${prueba.almacenamiento}" />
+                          </div>
+                          
+                           <div class="form-group"> 
+                           <label>Procesador</label>
+                           <input type="text" th:value="${prueba.procesador}" th:name="procesador" th:placeholder="${prueba.procesador}" />    
+                          </div  >
+  
+                           <div class="form-group"> 
+                           <label>Numero de cores</label>
+                            <input type="number" th:value="${prueba.numero_cores}" th:name="numero_cores"  th:placeholder="${prueba.numero_cores}"/>   
+                          </div>
+  
+  
+                            <div class="form-group"> 
+                              <label>Color</label>
+                              <input type="text" th:value="${prueba.color}" th:name="color"  th:placeholder="${prueba.color}" />  
+                            </div>  
+  
+                            
+                            
+                          <div class="form-group"> 
+                            <label>Descripcion</label>
+                            <input type="text" th:value="${prueba.descripcion}" th:name="descripcion" th:placeholder="${prueba.descripcion}"/>
+                          </div>
+                            
+                          <div class="form-group"> 
+                            <label>Nombre</label>
+                            <input type="text" th:value="${prueba.nombre}" th:name="nombre" th:placeholder="${prueba.nombre}"/>
+                            
+                          </div>    
+                          
+                          <div class="form-group"> 
+                            <label>Marca</label>
+                            <select th:name="id_marca">
+                           
+                              <option  th:each ="opcion : ${opciones}"  th:text="${opcion.nombre_marca}" th:value="${opcion.id_marca}"   ></option>
+                            </select>
+                          </div>           
+                       
+                       
+
+                           
+                          
+                     
+                       <button type ="submit">Salvar</button>
+                       
+                     </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>    
+                
+                <button type="button" class="btn btn-primary" >
+                  Comprar
+                </button>
+
+              </div>
+              </div>             
+      
+              
+          
+      
+      
+          </div>
+           
+          
+          <div class="col-sm">
+
+            <table  cellpadding="10" class="table table-bordered">
+              <thead>
+                  <tr>
+                      
+                      <th>Información dispositivo</th>
+
+                      <th>Caracterizticas</th>
+      
+                     
+                  </tr>
+              </thead>
+              <tbody th:each ="prueba : ${listaDis}">
+                
+                    <tr><th>Precio</th><td th:text="${'Q' + #numbers.formatDecimal(prueba.precio_lista, 0, 'COMMA', 2, 'POINT')}"></td></tr></tr>
+                      <tr><th>Existencia</th><td th:text="${prueba.existencia}"></td></tr>
+                      <tr><th>Código modelo</th><td th:text="${prueba.codigo_modelo}"></td></tr>
+                      <tr><th>Almacenamiento</th><td th:text="${prueba.almacenamiento}"></td></tr>
+                      <tr><th>RAM</th><td th:text="${prueba.ram}"></td></tr>
+                      <tr><th>Procesador</th><td th:text="${prueba.procesador}"></td></tr>
+                      <tr><th>Color </th><td th:text="${prueba.color}"></td></tr>
+                      <tr><th>Descripcion</th><td th:text="${prueba.descripcion}"></td></tr>
+                      <tr><th>Descripcion</th><td th:text="${prueba.nombre_marca}"></td></tr>
+                     
+                  
+      
+                     
+                  
+                      
+                   
+                  </tr>
+              </tbody>
+              
+          </table>
+          
+      
+            
+          </div>
+         
+        </div>
+      </div>
+     
+    
+    
+    
+    
+ 
+    
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

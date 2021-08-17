@@ -1,6 +1,6 @@
-def tomcatWeb = 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\webapps'
+/*def tomcatWeb = 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\webapps'
 def tomcatBin = 'D:\\Auto_deployment\\apache-tomcat-9.0.30\\apache-tomcat-9.0.30\\bin'
-def tomcatStatus = ''
+def tomcatStatus = ''*/
 pipeline  {
     agent any
     tools { 
@@ -39,7 +39,7 @@ pipeline  {
                     }
                 }
             }
-        }
+        }/*
         stage('Build') {
             steps {
               sh 'mvn package'
@@ -59,7 +59,7 @@ pipeline  {
                 }
               }
                  
-           }
+           }*/
          stage('Email Notification') {
             steps {
                mail bcc: '',

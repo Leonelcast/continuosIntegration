@@ -38,7 +38,7 @@ public class MarcaTest extends VentasApplicationTests {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 		dao = mock(Dao.class);  
 	}
-/*
+
 	@Test
 	public void testMarca() throws Exception {
 		mockMvc.perform(head("/addMarca")).andExpect(status().isOk());
@@ -65,6 +65,6 @@ public class MarcaTest extends VentasApplicationTests {
 		verify(dao, times(1)).updateMarca(ma); 
 				
 
-	}*/
+	}
 
 }

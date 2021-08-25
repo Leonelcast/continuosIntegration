@@ -44,7 +44,15 @@ pipeline  {
                 }
             }
         }
-         stage('Email Notification') {
+        stage('Server deployment') {
+            steps {
+                script{
+                deploy adapters: [tomcat9(credentialsId: '43bd9820-c3fe-464c-9c91-0d6f8e15818d', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
+                }
+              
+            }
+        }
+        stage('Email Notification') {
             steps {
                mail bcc: '',
                body: 'El pipeline a compilado con exito', cc: '', 
@@ -53,15 +61,6 @@ pipeline  {
                to: 'castaneda161618@unis.edu.gt'
             }
         }
-        stage('Server deployment') {
-            steps {
-                script{
-                deploy adapters: [tomcat9(credentialsId: '43bd9820-c3fe-464c-9c91-0d6f8e15818d', path: '', url: 'http://localhost:8085/')], contextPath: 'rps', war: '**/*.war'
-                }
-              
-            }
-        }
-
    }
 }
 

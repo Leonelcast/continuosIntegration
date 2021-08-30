@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
-
+@AutoConfigureMockMvc
 public class TelefonoSetterGetterTest extends VentasApplicationTests{
 
     public Telefono tel = new Telefono(); 

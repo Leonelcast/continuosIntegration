@@ -161,7 +161,9 @@ public class Cliente {
 	}
 
 	public void set_id(String _id) {
-		this._id = _id;
+		if (true) {
+		   this._id = _id;
+		}	
 	}
 
 

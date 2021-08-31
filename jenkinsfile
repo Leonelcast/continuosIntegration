@@ -44,6 +44,12 @@ pipeline  {
                 }
             }
         }
+        stage('War Build') {
+            steps {
+             sh 'mvn package'
+              
+            }
+        }
         stage('Server deployment') {
             steps {
                 script{

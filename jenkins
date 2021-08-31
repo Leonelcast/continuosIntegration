@@ -6,8 +6,8 @@ pipeline  {
     stages {
         stage('Repo') {
             steps {
-               
-                 git 'https://github.com/Leonelcast/continuosIntegration'
+               git branch: 'dev', url: 'https://github.com/Leonelcast/continuosIntegration'
+              
             }
         }
         /* stage('SonarQube Analysis') {

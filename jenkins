@@ -10,7 +10,7 @@ pipeline  {
                  git 'https://github.com/Leonelcast/continuosIntegration'
             }
         }
-         stage('SonarQube Analysis') {
+        /* stage('SonarQube Analysis') {
             steps {
               withSonarQubeEnv('sonarQube') 
               {
@@ -42,6 +42,12 @@ pipeline  {
                         }
                     }
                 }
+            }
+        }*/
+        stage('Build War') {
+            steps {
+             sh 'mvn package'
+              
             }
         }
         stage('Server deployment') {

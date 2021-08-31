@@ -112,7 +112,7 @@ public class Controlador {
     @RequestMapping(value = "/individual/{id}", method = RequestMethod.GET)
     public String view(final Model model, @PathVariable("id") int id) {
         final List<Telefono> listaDis = dao.list2(id);
-        final List<Telefono> opciones = dao.listOpciones("Select *from VENTAS.fabrica");
+        final List<Telefono> opciones = dao.listOpciones("Select *from DEV.fabrica");
         model.addAttribute("opciones", opciones);
         model.addAttribute("listaDis", listaDis);
         model.addAttribute("imgUtil", new ImageUtil());
@@ -145,9 +145,9 @@ public class Controlador {
         byte[] fotoa = foto1.getBytes();
         byte[] fotob = foto2.getBytes();
         byte[] fotoc = foto3.getBytes();
-        dao.updateF(fotoa, "UPDATE VENTAS.BODEGA SET foto1=? WHERE id_bodega=?", id);
-        dao.updateF(fotob, "UPDATE VENTAS.BODEGA SET foto2=? WHERE id_bodega=?", id);
-        dao.updateF(fotoc, "UPDATE VENTAS.BODEGA SET foto3=? WHERE id_bodega=?", id);
+        dao.updateF(fotoa, "UPDATE DEV.BODEGA SET foto1=? WHERE id_bodega=?", id);
+        dao.updateF(fotob, "UPDATE DEV.BODEGA SET foto2=? WHERE id_bodega=?", id);
+        dao.updateF(fotoc, "UPDATE DEV.BODEGA SET foto3=? WHERE id_bodega=?", id);
 
         String tabla = "Bodega";
         dao.historialC(session2, "Update", tabla);
@@ -170,7 +170,7 @@ public class Controlador {
     public String showNewForm(Model model) {
         Telefono nuevo = new Telefono();
         model.addAttribute("nuevo", nuevo);
-        final List<Telefono> opciones = dao.listOpciones("Select *from VENTAS.fabrica");
+        final List<Telefono> opciones = dao.listOpciones("Select *from DEV.fabrica");
         model.addAttribute("opciones", opciones);
         return "new";
     }
@@ -290,7 +290,7 @@ public class Controlador {
     public String viewCliente(Model model) throws IOException {
         Cliente ci = new Cliente();
         model.addAttribute("ci", ci);
-        final List<Cliente> opciones = dao.listOpcionesC("Select *from VENTAS.tipo_clientes");
+        final List<Cliente> opciones = dao.listOpcionesC("Select *from DEV.tipo_clientes");
         model.addAttribute("opciones", opciones);
 
         return "cliente.html";

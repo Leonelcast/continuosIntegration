@@ -72,10 +72,10 @@ public class TelefonoTest extends VentasApplicationTests {
     public void updateTelefonoTest() throws IOException
     {
         
-        Telefono tel = mockdao.get(61);        
-            tel.setNombret("MagiciPhone");        
+        Telefono tel = mockdao.get(22);        
+            tel.setNombret("AAAA");        
         mockdao.updateT(tel);         
-        assertSame(tel.getNombret(),"MagiciPhone" ); 
+        assertSame(tel.getNombret(),"AAAA" ); 
     }
   
 /*

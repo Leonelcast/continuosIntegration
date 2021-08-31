@@ -26,6 +26,7 @@ pipeline  {
               
             }
         }
+
         stage("Quality Gate"){
                 steps {
                     script {
@@ -43,7 +44,15 @@ pipeline  {
                 }
             }
         }
-         stage('Email Notification') {
+        stage('Server deployment') {
+            steps {
+                script{
+                deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
+                }
+              
+            }
+        }
+        stage('Email Notification') {
             steps {
                mail bcc: '',
                body: 'El pipeline a compilado con exito', cc: '', 
@@ -54,8 +63,5 @@ pipeline  {
         }
    }
 }
-
-//
-
 
 

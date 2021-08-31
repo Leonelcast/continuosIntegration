@@ -3,9 +3,15 @@ package com.ventas.ventas;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 
+
+@AutoConfigureMockMvc
 public class MarcaSetetrsGettersTest extends VentasApplicationTests{
 
     public Marca marca = new Marca(); 

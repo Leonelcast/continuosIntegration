@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<link href="" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+<title></title>
+</head>
+<body class="text-center">
+    <nav class="navbar navbar-expand-xl navbar_intems " id="l"> <a class="navbar-brand" href="#"> Tigo</a> 
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> 
+          <span class="navbar-toggler-icon" id="narv"></span> </button> <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav"> <a class="nav-item nav-link active" href=""><span class="sr-only">(current)</span></a> 
+                <a class="nav-item nav-link disabled" href="#"></a> </div> </div> </nav>
+              <nav>
+                <div class ="container-fluid">
+                  <div class="row justify-content-center">
+                    <div class= "col-md-10">
+                      <h3 class="text-center mt-2"> Insertar Clientes </h3>
+                      <hr>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+    </header>
+    <div class= "container">  
+        <div class="row">
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+                <form action ="#" th:action="@{/updateCs}" th:object="${ci}"  method="post" th:each ="cli : ${listCli}"> 
+                    
+                    <input  type="hidden"  th:value="${cli.id_cliente}" th:name="id_cliente"  />
+                <br>
+                    <label>Suscripcion</label>
+                    <br>
+                    <input type="text" th:value="${cli.tipo_suscripcion}" placeholder="Suscripcion" th:name="tipo_suscripcion"/>
+                <br>
+                <br>
+                    <label >Inicio de suscripcion</label>
+                    <br>
+                    <input type="date" th:value="${cli.inicio_suscripcion}" th:name="inicio_suscripcion"/>
+                <br>
+                <br>
+                <label>Final de Suscripcion</label>
+                    <br>
+                    <input type="date" th:value="${cli.vencimiento_suscripcion}" th:name="vencimiento_suscripcion"/>
+                <br>
+                <br>
+                    <button type ="submit">Salvar</button>
+                <br>
+                <br>
+            </form>
+            
+               
+                </form>
+            </div>  
+            <div class="col-4">
+        </div>
+    </div>
+</body>
+
+
+ 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

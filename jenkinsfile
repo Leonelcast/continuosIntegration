@@ -90,7 +90,7 @@ pipeline  {
                  }
                  failure {
                     mail bcc: '',
-                   body: 'El pipeline ha fallado el fallo fue en "{err}", revisar nuevamente el codigo para cumplir con los requisitos establecidos', cc: '', 
+                   body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!, revisar nuevamente el codigo para cumplir con los requisitos establecidos', cc: '', 
                    from: '', replyTo: '',
                    subject: 'Revisar el codigo debido a que no se llega a cumplir con los requisitos establecidos', 
                    to: 'castaneda161618@unis.edu.gt'

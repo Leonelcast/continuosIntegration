@@ -19,13 +19,32 @@ pipeline  {
                 
                 }
             }
-        }
+        }/*
          stage('Unit test') {
             steps {
              sh 'mvn test'
               
             }
-        }
+        }*/
+        post {
+                 always {
+                   sh 'mvn test'
+                 }
+                 success {
+                   mail bcc: '',
+                   body: 'El pipeline a compilado con exito', cc: '', 
+                   from: '', replyTo: '',
+                   subject: 'Jenkins pipeline ha tenido exito', 
+                   to: 'castaneda161618@unis.edu.gt'
+                 }
+                 failure {
+                    mail bcc: '',
+                   body: 'El pipeline ha fallado', cc: '', 
+                   from: '', replyTo: '',
+                   subject: 'Revisar el codigo debido a que fallo en los unit testing', 
+                   to: 'castaneda161618@unis.edu.gt'
+                 }
+               }
 
         stage("Quality Gate"){
                 steps {

@@ -3,7 +3,7 @@ pipeline  {
     tools { 
             maven 'maven-3'
         }
-    stages {
+   /* stages {
         stage('Repo') {
             steps {
                
@@ -19,15 +19,7 @@ pipeline  {
                 
                 }
             }
-        }/*
-         stage('Unit test') {
-            steps {
-             sh 'mvn test'
-              
-            }
-        }*/
-       
-
+        }
         stage("Quality Gate"){
                 steps {
                     script {
@@ -68,7 +60,7 @@ pipeline  {
                to: 'castaneda161618@unis.edu.gt'
             }
         }
-   }
+   }*/
     post {
                  always {
                    sh 'mvn test'

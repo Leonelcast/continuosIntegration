@@ -9,22 +9,23 @@ pipeline  {
             steps {
                
                  git 'https://github.com/Leonelcast/continuosIntegration'
-            }
-            script{
+                  script{
                 failure_stage=env.STAGE_NAME
+                }
             }
+           
         }
          stage('SonarQube Analysis') {
             steps {
               withSonarQubeEnv('sonarQube') 
               {
                 sh 'mvn clean verify sonar:sonar -Dsonar.password= -Dsonar.login=975fc502c5f657c213cb6b90f33679100fc516c4 '
-                
-                
-                }
-                script{
+                 script{
                     failure_stage=env.STAGE_NAME
                 }
+                
+                }
+               
             }
         }
         stage("Quality Gate"){

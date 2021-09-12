@@ -90,9 +90,9 @@ pipeline  {
                  }
                  failure {
                   mail bcc: '',
-                   body: 'Check console output at $BUILD_URL to view the results.', cc: '', 
+                   body: 'Check console output at "$BUILD_URL" to view the results.', cc: '', 
                    from: '', replyTo: '',
-                   subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER', 
+                   subject: 'Build failed in Jenkins: "$PROJECT_NAME" - "#$BUILD_NUMBER"', 
                    to: 'castaneda161618@unis.edu.gt'
                    
         

@@ -1,3 +1,4 @@
+def failure_stage = ''
 pipeline  {
     agent any
     tools { 
@@ -9,6 +10,9 @@ pipeline  {
                
                  git 'https://github.com/Leonelcast/continuosIntegration'
             }
+            script{
+                failure_stage=env.STAGE_NAME
+            }
         }
          stage('SonarQube Analysis') {
             steps {
@@ -17,6 +21,9 @@ pipeline  {
                 sh 'mvn clean verify sonar:sonar -Dsonar.password= -Dsonar.login=975fc502c5f657c213cb6b90f33679100fc516c4 '
                 
                 
+                }
+                script{
+                    failure_stage=env.STAGE_NAME
                 }
             }
         }
@@ -43,6 +50,12 @@ pipeline  {
                 }
             }
         }
+         stage('Unit test') {
+            steps {
+             sh 'mvn test'
+              
+            }
+        }
         stage('War Build') {
             steps {
              sh 'mvn package'
@@ -59,21 +72,18 @@ pipeline  {
         }
    }/*
     post {
-                 always {
-                   sh 'mvn test'
-                 }
                  success {
                    mail bcc: '',
                    body: 'El pipeline a compilado con exito', cc: '', 
                    from: '', replyTo: '',
-                   subject: 'Jenkins pipeline ha tenido exito', 
+                   subject: 'Jenkins pipeline ha tenido exito y se ha realizado el deployment en el servidor', 
                    to: 'castaneda161618@unis.edu.gt'
                  }
                  failure {
                     mail bcc: '',
                    body: 'El pipeline ha fallado', cc: '', 
                    from: '', replyTo: '',
-                   subject: 'Revisar el codigo debido a que fallo en los unit testing', 
+                   subject: 'Revisar el codigo debido a que no se llega a cumplir con los requisitos establecidos', 
                    to: 'castaneda161618@unis.edu.gt'
                  }
                }*/

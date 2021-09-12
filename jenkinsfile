@@ -30,7 +30,6 @@ pipeline  {
         }
         stage("Quality Gate"){
                 steps {
-                    script {
                         timeout(time: 1, unit: 'HOURS') {
                             def qg = waitForQualityGate()
                             if (qg.status != 'OK') {
@@ -47,31 +46,42 @@ pipeline  {
                                subject: 'La calidad del codigo es buena y cumple con los requisitos establecidos en sonarQube', 
                                to: 'castaneda161618@unis.edu.gt'
                         }
-                    }
+                          script{
+                            failure_stage=env.STAGE_NAME
+                            }
+                    
                 }
             }
         }
          stage('Unit test') {
             steps {
              sh 'mvn test'
+               script{
+                failure_stage=env.STAGE_NAME
+                }
               
             }
         }
         stage('War Build') {
             steps {
              sh 'mvn package'
+               script{
+                failure_stage=env.STAGE_NAME
+                }
               
             }
         }
         stage('Server deployment') {
             steps {
-                script{
-                deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
+            deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
+               
+              script{
+                failure_stage=env.STAGE_NAME
                 }
               
             }
         }
-   }/*
+   }
     post {
                  success {
                    mail bcc: '',
@@ -84,10 +94,10 @@ pipeline  {
                     mail bcc: '',
                    body: 'El pipeline ha fallado', cc: '', 
                    from: '', replyTo: '',
-                   subject: 'Revisar el codigo debido a que no se llega a cumplir con los requisitos establecidos', 
+                   subject: 'Revisar el codigo debido a que no se llega a cumplir con los requisitos establecidos el fallo fue en ${failure_stage}', 
                    to: 'castaneda161618@unis.edu.gt'
                  }
-               }*/
+               }
    
    
 }

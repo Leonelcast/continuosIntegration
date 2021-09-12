@@ -89,11 +89,10 @@ pipeline  {
                    to: 'castaneda161618@unis.edu.gt'
                  }
                  failure {
-                    mail bcc: '',
-                   body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!, revisar nuevamente el codigo para cumplir con los requisitos establecidos', cc: '', 
-                   from: '', replyTo: '',
-                   subject: 'Revisar el codigo debido a que no se llega a cumplir con los requisitos establecidos', 
-                   to: 'castaneda161618@unis.edu.gt'
+                  emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+                    to: 'castaneda161618@unis.edu.gt', 
+                    subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
+        
                  }
                }
    

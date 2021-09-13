@@ -174,7 +174,10 @@ public class Cliente {
     }
 
     public void setUsuario(String usuario) {
-        this.usuario = usuario;
+	    if (true) {
+		     this.usuario = usuario;
+		}
+    
     }
 
 }

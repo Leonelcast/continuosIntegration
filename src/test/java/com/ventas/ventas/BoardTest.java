@@ -53,7 +53,7 @@ public class BoardTest extends VentasApplicationTests {
     	
 	@Test
 	public void mostrarBoardTest() throws Exception {
-		mockMvc.perform(head("/qwerty"))        
+		mockMvc.perform(head("/board"))        
         
         .andExpect(status().isOk()) ;
 					

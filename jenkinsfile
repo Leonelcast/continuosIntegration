@@ -1,4 +1,4 @@
-def failure_stage = ''
+
 pipeline  {
     agent any
     tools { 
@@ -9,9 +9,6 @@ pipeline  {
             steps {
                
                  git 'https://github.com/Leonelcast/continuosIntegration'
-                  script{
-                failure_stage=env.STAGE_NAME
-                }
             }
            
         }
@@ -20,9 +17,6 @@ pipeline  {
               withSonarQubeEnv('sonarQube') 
               {
                 sh 'mvn clean verify sonar:sonar -Dsonar.password= -Dsonar.login=975fc502c5f657c213cb6b90f33679100fc516c4 '
-                 script{
-                    failure_stage=env.STAGE_NAME
-                }
                 
                 }
                
@@ -54,29 +48,17 @@ pipeline  {
          stage('Unit test') {
             steps {
              sh 'mvn test'
-               script{
-                failure_stage=env.STAGE_NAME
-                }
-              
-            }
+             }
         }
         stage('War Build') {
             steps {
              sh 'mvn package'
-               script{
-                failure_stage=env.STAGE_NAME
-                }
-              
-            }
+              }
         }
         stage('Server deployment') {
             steps {
             deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
-               
-              script{
-                failure_stage=env.STAGE_NAME
-                }
-              
+        
             }
         }
    }
@@ -86,14 +68,14 @@ pipeline  {
                    body: 'El pipeline a compilado con exito', cc: '', 
                    from: '', replyTo: '',
                    subject: 'Jenkins pipeline ha tenido exito y se ha realizado el deployment en el servidor', 
-                   to: 'castaneda161618@unis.edu.gt'
+                   to: 'jflores@unis.edu.gt '
                  }
                  failure {
                   mail bcc: '',
-                   body: 'Check console output at "$BUILD_URL" to view the results.', cc: '', 
+                   body: 'Pipeline fallo', cc: '', 
                    from: '', replyTo: '',
-                   subject: 'Build failed in Jenkins: "$PROJECT_NAME" - "#$BUILD_NUMBER"', 
-                   to: 'castaneda161618@unis.edu.gt'
+                   subject: 'Revisar los logs para tomar en cuenta los errores y que el codigo llegue a cumplir con los requerimientos establecidos', 
+                   to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
                    
         
                  }

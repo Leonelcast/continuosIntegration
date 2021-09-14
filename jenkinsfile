@@ -65,14 +65,14 @@ pipeline  {
     post {
                  success {
                    mail bcc: '',
-                   body: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', cc: '', 
+                   body: 'El pipeline ha tenido exito y se ha realizado el deploy en el servidor', cc: '', 
                    from: '', replyTo: '',
                    subject: 'Jenkins pipeline ha tenido exito', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
                  }
                  failure {
                   mail bcc: '',
-                   body: '', cc: '', 
+                   body: 'Revisar los logs para tomar en cuenta los errores y que el codigo llegue a cumplir con los requerimientos establecidos', cc: '', 
                    from: '', replyTo: '',
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'

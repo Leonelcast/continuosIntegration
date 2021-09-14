@@ -9,9 +9,7 @@ pipeline  {
             steps {
                
                  git 'https://github.com/Leonelcast/continuosIntegration'
-                  script{
-                    failure_stage=env.STAGE_NAME
-                }
+                 
             }
            
         }

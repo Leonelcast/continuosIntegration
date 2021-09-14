@@ -9,6 +9,9 @@ pipeline  {
             steps {
                
                  git 'https://github.com/Leonelcast/continuosIntegration'
+                  script{
+                    failure_stage=env.STAGE_NAME
+                }
             }
            
         }
@@ -51,16 +54,25 @@ pipeline  {
          stage('Unit test') {
             steps {
              sh 'mvn test'
+              script{
+                    failure_stage=env.STAGE_NAME
+                }
              }
         }
         stage('War Build') {
             steps {
              sh 'mvn package'
+              script{
+                    failure_stage=env.STAGE_NAME
+                }
               }
         }
         stage('Server deployment') {
             steps {
             deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
+             script{
+                    failure_stage=env.STAGE_NAME
+                }
         
             }
         }
@@ -75,7 +87,7 @@ pipeline  {
                  }
                  failure {
                   mail bcc: '',
-                   body: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n resultado: ${env.BUILD_STATUS} \n fallo: ${failure_stage}" , cc: '', 
+                   body: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n resultado: ${env.BUILD_STATUS} \n fallo: ${failure_stage} \n Url del fallo: ${env.BUILD_URL}" , cc: '', 
                    from: '', replyTo: '',
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'

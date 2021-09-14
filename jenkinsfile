@@ -72,7 +72,7 @@ pipeline  {
                  }
                  failure {
                   mail bcc: '',
-                   body: 'Revisar los logs para tomar en cuenta los errores y que el codigo llegue a cumplir con los requerimientos establecidos', cc: '', 
+                   body: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', cc: '', 
                    from: '', replyTo: '',
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'

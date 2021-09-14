@@ -35,6 +35,8 @@ pipeline  {
         stage("Quality Gate"){
                 steps {
                     script{
+                            failure_stage=env.STAGE_NAME
+                            echo "Quality Gate"                   
                              timeout(time: 1, unit: 'HOURS') {
                                     def qg = waitForQualityGate()
                                     if (qg.status != 'OK') {
@@ -57,30 +59,33 @@ pipeline  {
             }
          stage('Unit test') {
             steps {
-             sh 'mvn test'
-              script{
+            script{
                     failure_stage=env.STAGE_NAME
                     echo "Unit test"
                     
                 }
+             sh 'mvn test'
+              
              }
         }
         stage('War Build') {
             steps {
-             sh 'mvn package'
-              script{
+             script{
                     failure_stage=env.STAGE_NAME
                      echo "War Build"
                 }
+             sh 'mvn package'
+             
               }
         }
         stage('Server deployment') {
             steps {
-            deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
              script{
                     failure_stage=env.STAGE_NAME
                      echo "Server deployment"
                 }
+            deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
+            
         
             }
         }

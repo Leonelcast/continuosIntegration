@@ -100,7 +100,8 @@ pipeline  {
                  }
                  failure {
                   mail bcc: '',
-                   body: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n fallo en el stage: ${failure_stage} \n Url del fallo: ${env.BUILD_URL}" , cc: '', 
+                   body: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n fallo en el stage: ${failure_stage} \n Url del fallo: ${env.BUILD_URL}  
+                   \n El pipeline ha fallado revisar los logs y que cumpla con los requisitos establecidos " , cc: '', 
                    from: '', replyTo: '',
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'

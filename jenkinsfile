@@ -75,7 +75,7 @@ pipeline  {
                  }
                  failure {
                   mail bcc: '',
-                   body: "Project: ${env.JOB_NAME} Build Number: ${env.BUILD_NUMBER} resultado: ${env.BUILD_STATUS} fallo: "${env.STAGE_NAME}" , cc: '', 
+                   body: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n resultado: ${env.BUILD_STATUS} \n fallo: ${env.STAGE_NAME}" , cc: '', 
                    from: '', replyTo: '',
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'

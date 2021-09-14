@@ -65,7 +65,7 @@ pipeline  {
     post {
                  success {
                    mail bcc: '',
-                   body: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", cc: '', 
+                   body: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', cc: '', 
                    from: '', replyTo: '',
                    subject: 'Jenkins pipeline ha tenido exito', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'

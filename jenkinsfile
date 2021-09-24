@@ -1,4 +1,4 @@
-
+def stageFail = ''
 pipeline  {
     agent any
     tools { 
@@ -9,6 +9,11 @@ pipeline  {
             steps {
                
                  git 'https://github.com/Leonelcast/continuosIntegration'
+                  script{
+                    stageFail=env.STAGE_NAME
+                    echo "Repo"
+                }
+                 
             }
            
         }
@@ -16,7 +21,12 @@ pipeline  {
             steps {
               withSonarQubeEnv('sonarQube') 
               {
+               script{
+                    stageFail=env.STAGE_NAME
+                    echo "SonarQube Analysis"
+                }
                 sh 'mvn clean verify sonar:sonar -Dsonar.password= -Dsonar.login=975fc502c5f657c213cb6b90f33679100fc516c4 '
+               
                 
                 }
                
@@ -25,6 +35,8 @@ pipeline  {
         stage("Quality Gate"){
                 steps {
                     script{
+                            stageFail=env.STAGE_NAME
+                            echo "Quality Gate"                   
                              timeout(time: 1, unit: 'HOURS') {
                                     def qg = waitForQualityGate()
                                     if (qg.status != 'OK') {
@@ -47,17 +59,33 @@ pipeline  {
             }
          stage('Unit test') {
             steps {
+            script{
+                    stageFail=env.STAGE_NAME
+                    echo "Unit test"
+                    
+                }
              sh 'mvn test'
+              
              }
         }
         stage('War Build') {
             steps {
+             script{
+                    stageFail=env.STAGE_NAME
+                     echo "War Build"
+                }
              sh 'mvn package'
+             
               }
         }
         stage('Server deployment') {
             steps {
+             script{
+                    stageFail=env.STAGE_NAME
+                     echo "Server deployment"
+                }
             deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
+            
         
             }
         }
@@ -65,14 +93,14 @@ pipeline  {
     post {
                  success {
                    mail bcc: '',
-                   body: 'El pipeline a compilado con exito y se ha realizado el deployment en el servidor', cc: '', 
+                   body: 'El pipeline ha tenido exito y se ha realizado el deploy en el servidor', cc: '', 
                    from: '', replyTo: '',
                    subject: 'Jenkins pipeline ha tenido exito', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
                  }
                  failure {
                   mail bcc: '',
-                   body: 'Revisar los logs para tomar en cuenta los errores y que el codigo llegue a cumplir con los requerimientos establecidos', cc: '', 
+                   body: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n fallo en el stage: ${stageFail} \n Url del fallo: ${env.BUILD_URL} \n El pipeline ha fallado revisar los logs y que cumpla con los requisitos establecidos " , cc: '', 
                    from: '', replyTo: '',
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'

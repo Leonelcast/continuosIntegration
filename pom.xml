@@ -14,6 +14,17 @@
 	<packaging>war</packaging>
 	<name>ventas</name>
 	<description>Demo project for Spring Boot</description>
+	<profiles>
+	<profile>
+		<id>master</id>
+		<properties>
+			<activatedProperties>master</activatedProperties>
+		</properties>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+	</profile>
+</profiles>
 	<properties>
 		<java.version>1.8</java.version>
 		<sonar.scanner.force-deprecated-java-version>true</sonar.scanner.force-deprecated-java-version>

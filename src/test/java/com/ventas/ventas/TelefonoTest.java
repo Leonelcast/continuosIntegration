@@ -67,7 +67,7 @@ public class TelefonoTest extends VentasApplicationTests {
          
    
     }
-
+/*
     @Test
     public void updateTelefonoTest() throws IOException
     {
@@ -78,7 +78,7 @@ public class TelefonoTest extends VentasApplicationTests {
         assertSame(tel.getNombret(),"MagiciPhone" ); 
     }
   
-/*
+
     @Test
     public void mostrarTelefonoTest() throws IOException
     {

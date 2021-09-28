@@ -32,7 +32,7 @@ pipeline  {
                
             }
         }
-       /* stage("Quality Gate"){
+       stage("Quality Gate"){
                 steps {
                     script{
                             stageFail=env.STAGE_NAME
@@ -56,7 +56,7 @@ pipeline  {
                         }
                     }
                 }
-            }*/
+            }
          stage('Unit test') {
             steps {
             script{

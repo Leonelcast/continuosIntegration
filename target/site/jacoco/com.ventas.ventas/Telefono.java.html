@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Telefono.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ventas</a> &gt; <a href="index.source.html" class="el_package">com.ventas.ventas</a> &gt; <span class="el_source">Telefono.java</span></div><h1>Telefono.java</h1><pre class="source lang-java linenums">package com.ventas.ventas;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+
+import java.sql.Blob;
+import java.util.Base64;
+import java.util.List;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import javax.persistence.Lob;
+
+
+/**
+  * &lt;p&gt;Clase utilizada para manejar las terminales, modelar las terminales&lt;/p&gt;
+ */
+@Entity
+public class Telefono {
+
+    private int id_dispositivo;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
+    private int id_bodega;
+
+    private int id_marca;
+
+    private String buscar;
+
+    public String getBuscar() {
+<span class="nc" id="L40">        return this.buscar;</span>
+    }
+
+    public void setBuscar(String buscar) {
+<span class="nc" id="L44">        this.buscar = buscar;</span>
+<span class="nc" id="L45">    }</span>
+
+    public int getId_marca() {
+<span class="nc" id="L48">        return this.id_marca;</span>
+    }
+
+    public void setId_marca(int id_marca) {
+<span class="fc" id="L52">        this.id_marca = id_marca;</span>
+<span class="fc" id="L53">    }</span>
+
+    public int getId_bodega() {
+<span class="nc" id="L56">        return this.id_bodega;</span>
+    }
+
+    public void setId_bodega(int id_bodega) {
+<span class="nc" id="L60">        this.id_bodega = id_bodega;</span>
+<span class="nc" id="L61">    }</span>
+
+    private String foto1;
+
+	public String getFoto1() {
+<span class="nc" id="L66">		return this.foto1;</span>
+	}
+
+	public void setFoto1(String foto1) {
+<span class="nc" id="L70">		this.foto1 = foto1;</span>
+<span class="nc" id="L71">	}</span>
+
+
+    private String foto2;
+
+    public String getFoto2() {
+<span class="nc" id="L77">        return this.foto2;</span>
+    }
+
+    public void setFoto2(String foto2) {
+<span class="nc" id="L81">        this.foto2 = foto2;</span>
+<span class="nc" id="L82">    }</span>
+
+    private String foto3;
+
+    public String getFoto3() {
+<span class="nc" id="L87">        return this.foto3;</span>
+    }
+
+    public void setFoto3(String foto3) {
+<span class="nc" id="L91">        this.foto3 = foto3;</span>
+<span class="nc" id="L92">    }</span>
+
+   
+
+
+
+
+    @Column
+    private String numero_serie;
+
+    @Column
+    private String nombre_marca;
+
+    @Column
+    private String nombret;
+
+    @Column
+    private String descripcion;
+
+    @Column
+    private int existencia;
+
+    public int getExistencia() {
+<span class="fc" id="L115">        return this.existencia;</span>
+    }
+
+    public void setExistencia(int existencia) {
+<span class="fc" id="L119">        this.existencia = existencia;</span>
+<span class="fc" id="L120">    }</span>
+
+    @Column
+    private float precio_lista;
+
+    public float getPrecio_lista() {
+<span class="fc" id="L126">        return this.precio_lista;</span>
+    }
+
+    public void setPrecio_lista(float precio_lista) {
+<span class="fc" id="L130">        this.precio_lista = precio_lista;</span>
+<span class="fc" id="L131">    }</span>
+
+    @Column
+    private String codigo_modelo;
+
+    public String getCodigo_modelo() {
+<span class="fc" id="L137">        return this.codigo_modelo;</span>
+    }
+
+    public void setCodigo_modelo(String codigo_modelo) {
+<span class="fc" id="L141">        this.codigo_modelo = codigo_modelo;</span>
+<span class="fc" id="L142">    }</span>
+
+    @Column
+    private int ram;
+
+    public int getRam() {
+<span class="fc" id="L148">        return this.ram;</span>
+    }
+
+    public void setRam(int ram) {
+<span class="fc" id="L152">        this.ram = ram;</span>
+<span class="fc" id="L153">    }</span>
+
+    @Column
+    private int almacenamiento;
+
+    public int getAlmacenamiento() {
+<span class="fc" id="L159">        return this.almacenamiento;</span>
+    }
+
+    public void setAlmacenamiento(int almacenamiento) {
+<span class="fc" id="L163">        this.almacenamiento = almacenamiento;</span>
+<span class="fc" id="L164">    }</span>
+
+    @Column
+    private String procesador;
+
+    public String getProcesador() {
+<span class="fc" id="L170">        return this.procesador;</span>
+    }
+
+    public void setProcesador(String procesador) {
+<span class="fc" id="L174">        this.procesador = procesador;</span>
+<span class="fc" id="L175">    }</span>
+
+    @Column
+    private int numero_cores;
+
+    public int getNumero_cores() {
+<span class="fc" id="L181">        return this.numero_cores;</span>
+    }
+
+    public void setNumero_cores(int numero_cores) {
+<span class="fc" id="L185">        this.numero_cores = numero_cores;</span>
+<span class="fc" id="L186">    }</span>
+
+    @Column
+    private String color;
+
+    public String getColor() {
+<span class="fc" id="L192">        return this.color;</span>
+    }
+
+    public void setColor(String color) {
+<span class="fc" id="L196">        this.color = color;</span>
+<span class="fc" id="L197">    }</span>
+
+    // Constructor
+<span class="fc" id="L200">    public  Telefono() {</span>
+       
+         
+
+<span class="fc" id="L204">    }</span>
+    // Seters y geters
+
+    public int getId_dispositivo() {
+<span class="fc" id="L208">        return id_dispositivo;</span>
+    }
+
+    public void setId_dispositivo(int id_dispositivo) {
+<span class="fc" id="L212">        this.id_dispositivo = id_dispositivo;</span>
+<span class="fc" id="L213">    }</span>
+
+  
+
+    public String getNumero_serie() {
+<span class="fc" id="L218">        return numero_serie;</span>
+    }
+
+    public void setNumero_serie(String numero_serie) {
+<span class="fc" id="L222">        this.numero_serie = numero_serie;</span>
+<span class="fc" id="L223">    }</span>
+
+    public String getNombre_marca() {
+<span class="fc" id="L226">        return nombre_marca;</span>
+    }
+
+    public void setNombre_marca(String nombre_marca) {
+<span class="fc" id="L230">        this.nombre_marca = nombre_marca;</span>
+<span class="fc" id="L231">    }</span>
+
+    public String getNombret() {
+<span class="fc" id="L234">        return nombret;</span>
+    }
+
+    public void setNombret(String nombret) {
+<span class="fc" id="L238">        this.nombret = nombret;</span>
+<span class="fc" id="L239">    }</span>
+
+    public String getDescripcion() {
+<span class="fc" id="L242">        return descripcion;</span>
+    }
+
+    public void setDescripcion(String descripcion) {
+<span class="fc" id="L246">        this.descripcion = descripcion;</span>
+<span class="fc" id="L247">    }</span>
+
+       //Rest 
+
+       private String _id;
+
+       public String get_id() {
+<span class="nc" id="L254">           return this._id;</span>
+       }
+
+       public void set_id(String _id) {
+<span class="nc" id="L258">           this._id = _id;</span>
+<span class="nc" id="L259">       }</span>
+       private int origen;
+
+       public int getOrigen() {
+<span class="nc" id="L263">           return this.origen;</span>
+       }
+   
+       public void setOrigen(int origen) {
+<span class="nc" id="L267">           this.origen = origen;</span>
+<span class="nc" id="L268">       }</span>
+    
+   
+       private int id_estados; 
+   
+   
+       public int getId_estados() {
+<span class="nc" id="L275">           return this.id_estados;</span>
+       }
+   
+       public void setId_estados(int id_estados) {
+<span class="nc" id="L279">           this.id_estados = id_estados;</span>
+<span class="nc" id="L280">       }</span>
+   
+       private String estadof; 
+   
+       public String getEstadof() {
+<span class="nc" id="L285">           return this.estadof;</span>
+       }
+   
+       public void setEstadof(String estadof) {
+<span class="nc" id="L289">           this.estadof = estadof;</span>
+<span class="nc" id="L290">       }</span>
+   
+   
+       private int id_fabrica; 
+   
+       public int getId_fabrica() {
+<span class="nc" id="L296">           return this.id_fabrica;</span>
+       }
+   
+       public void setId_fabrica(int id_fabrica) {
+<span class="nc" id="L300">           this.id_fabrica = id_fabrica;</span>
+<span class="nc" id="L301">       }</span>
+   
+   
+       private String nombref; 
+   
+       public String getNombref() {
+<span class="nc" id="L307">           return this.nombref;</span>
+       }
+   
+       public void setNombref(String nombref) {
+<span class="nc" id="L311">           this.nombref = nombref;</span>
+<span class="nc" id="L312">       }</span>
+
+       private String modelo;
+
+       public String getModelo() {
+<span class="nc" id="L317">           return this.modelo;</span>
+       }
+
+       public void setModelo(String modelo) {
+<span class="nc" id="L321">           this.modelo = modelo;</span>
+<span class="nc" id="L322">       }</span>
+
+       private String marca;
+
+       public String getMarca() {
+<span class="nc" id="L327">           return this.marca;</span>
+       }
+
+       public void setMarca(String marca) {
+<span class="nc" id="L331">           this.marca = marca;</span>
+<span class="nc" id="L332">       }</span>
+
+       public float precio;
+
+       public float getPrecio() {
+<span class="nc" id="L337">           return this.precio;</span>
+       }
+
+       public void setPrecio(float precio) {
+<span class="nc" id="L341">           this.precio = precio;</span>
+<span class="nc" id="L342">       }</span>
+
+       private int cantidad; 
+
+	public int getCantidad() {
+<span class="nc" id="L347">		return this.cantidad;</span>
+	}
+
+	public void setCantidad(int cantidad) {
+<span class="nc" id="L351">		this.cantidad = cantidad;</span>
+<span class="nc" id="L352">	}</span>
+
+    private String estado;
+
+    public String getEstado() {
+<span class="nc" id="L357">        return this.estado;</span>
+    }
+
+    public void setEstado(String estado) {
+<span class="nc" id="L361">        this.estado = estado;</span>
+<span class="nc" id="L362">    }</span>
+//Para los numeros de serie
+    private String num_series;
+
+    public String getNum_series() {
+<span class="nc" id="L367">        return this.num_series;</span>
+    }
+
+    public void setNum_series(String num_series) {
+<span class="nc" id="L371">        this.num_series = num_series;</span>
+<span class="nc" id="L372">    }</span>
+
+  
+
+    private int id_num; 
+
+	public int getId_num() {
+<span class="nc" id="L379">		return this.id_num;</span>
+	}
+
+	public void setId_num(int id_num) {
+<span class="nc" id="L383">		this.id_num = id_num;</span>
+<span class="nc" id="L384">	}</span>
+
+    private String estadov;
+
+    public String getEstadov() {
+<span class="nc" id="L389">        return this.estadov;</span>
+    }
+
+    public void setEstadov(String estadov) {
+<span class="nc" id="L393">        this.estadov = estadov;</span>
+<span class="nc" id="L394">    }</span>
+
+    private String ip;
+
+    public String getIp() {
+<span class="nc" id="L399">        return this.ip;</span>
+    }
+
+    public void setIp(String ip) {
+<span class="nc" id="L403">        this.ip = ip;</span>
+<span class="nc" id="L404">    }</span>
+
+    private String puerto;
+
+    public String getPuerto() {
+<span class="nc" id="L409">        return this.puerto;</span>
+    }
+
+    public void setPuerto(String puerto) {
+<span class="nc" id="L413">        this.puerto = puerto;</span>
+<span class="nc" id="L414">    }</span>
+
+    private String nombre; 
+
+	public String getNombre() {
+<span class="nc" id="L419">		return this.nombre;</span>
+	}
+
+	public void setNombre(String nombre) {
+<span class="nc" id="L423">		this.nombre = nombre;</span>
+<span class="nc" id="L424">	}</span>
+
+
+    
+    
+    
+
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

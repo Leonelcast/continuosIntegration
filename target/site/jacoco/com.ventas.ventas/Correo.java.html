@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Correo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ventas</a> &gt; <a href="index.source.html" class="el_package">com.ventas.ventas</a> &gt; <span class="el_source">Correo.java</span></div><h1>Correo.java</h1><pre class="source lang-java linenums">package com.ventas.ventas;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+/**
+ * &lt;p&gt;Clase utilizada para usar los servicios de javaMailSender de springframeworkk&lt;/p&gt;
+ */
+@Service
+public class Correo {
+<span class="fc" id="L14">    public Correo(){</span>
+
+<span class="fc" id="L16">    }; </span>
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+
+    /**
+     * @param from de donde se esta enviando
+     * @param to a quien se esta mandando 
+     * @param subject el asunto del correo 
+     * @param body contenido del mensaje     
+     * @see &lt;a href=&quot;https://www.baeldung.com/spring-email&quot;&gt;Spring boot email&lt;/a&gt;
+     * @since 1.0
+    */
+    public void sendMail(String from, String to, String subject, String body) {
+
+<span class="nc" id="L32">        SimpleMailMessage mail = new SimpleMailMessage();</span>
+
+<span class="nc" id="L34">        mail.setFrom(from);</span>
+<span class="nc" id="L35">        mail.setTo(to);</span>
+<span class="nc" id="L36">        mail.setSubject(subject);</span>
+<span class="nc" id="L37">        mail.setText(body);</span>
+
+<span class="nc" id="L39">        javaMailSender.send(mail);</span>
+<span class="nc" id="L40">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

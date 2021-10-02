@@ -8,3 +8,7 @@ steps:
     image: maven:3-jdk-11
     commands:
       - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=http://f0d3-2800-98-1112-b1b-889b-ebad-b61d-cc83.ngrok.io
+  - name: Quality gate
+    image: maven:3-jdk-11
+    commands:
+      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=http://f0d3-2800-98-1112-b1b-889b-ebad-b61d-cc83.ngrok.io

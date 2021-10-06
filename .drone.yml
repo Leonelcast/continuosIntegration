@@ -7,8 +7,20 @@ steps:
   - name: Sonarqube
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=http://f0d3-2800-98-1112-b1b-889b-ebad-b61d-cc83.ngrok.io
+      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=http://b3db-2800-98-1112-b1b-f541-606c-e849-ab58.ngrok.io
   - name: Quality gate
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=http://f0d3-2800-98-1112-b1b-889b-ebad-b61d-cc83.ngrok.io
+      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=http://b3db-2800-98-1112-b1b-f541-606c-e849-ab58.ngrok.io
+  - name: Build WAR
+    image: maven:3-jdk-11
+    commands:
+      - mvn package
+- name: Server Deploy
+  image: alpine
+  commands:
+    - cd target/
+    - apk add curl
+    - stat ventas-0.0.1-SNAPSHOT.war
+    - curl -v -u admin:admin 'https://popular-cougar-30.loca.lt/manager/text/deploy?path=/rps&update=true'
+  

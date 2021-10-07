@@ -36,7 +36,8 @@ steps:
         from_secret: Password
 
       recipients:
-          - [castaneda161618@unis.edu.gt, jflores@unis.edu.gt]
+          - castaneda161618@unis.edu.gt
+          - jflores@unis.edu.gt
     when:
       status:
       - success

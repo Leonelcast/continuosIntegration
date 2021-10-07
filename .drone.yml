@@ -4,8 +4,12 @@ steps:
     image: maven:3-jdk-11
     commands:
       - mvn package
-  - name: Server Deploy
-    image: maven:3-jdk-11
+  - name: Server-master
+    image: alpine
     commands:
-      - mvn clean tomcat:deploy
+      - cd target/
+      - apk add curl
+      - stat ventas-0.0.1-SNAPSHOT.war
+      - mv  ventas-0.0.1-SNAPSHOT.war rps.war
+      - curl -v -u admin:admin -T rps.war 'http://ad3e-2800-98-1112-b1b-dd56-4d93-76bf-a41f.ngrok.io/manager/text/deploy?path=/rps&update=true'
   

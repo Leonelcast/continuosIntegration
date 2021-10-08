@@ -38,7 +38,7 @@ steps:
 
       recipients:
           - castaneda161618@unis.edu.gt
-          #- jflores@unis.edu.gt
+          - jflores@unis.edu.gt
     when:
       status:
       - success

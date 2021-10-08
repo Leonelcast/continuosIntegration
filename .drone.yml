@@ -7,23 +7,23 @@ steps:
   - name: Sonarqube
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://tall-lionfish-33.loca.lt
+      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://clever-mayfly-74.loca.lt
   - name: Quality gate
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://tall-lionfish-33.loca.lt
+      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://clever-mayfly-74.loca.lt
   - name: Build WAR
     image: maven:3-jdk-11
     commands:
       - mvn package
-  - name: Server-master
+  - name: Server
     image: alpine
     commands:
       - cd target/
       - apk add curl
       - stat ventas-0.0.1-SNAPSHOT.war
       - mv  ventas-0.0.1-SNAPSHOT.war rps.war
-      - curl -v -u admin:admin -T rps.war 'http://0b2b-2800-98-1112-b1b-46b-dcb5-866b-77f7.ngrok.io/manager/text/deploy?path=/rps&update=true'
+      - curl -v -u admin:admin -T rps.war 'http://3fe2-2800-98-1112-b1b-495d-664f-cfda-970c.ngrok.io/manager/text/deploy?path=/rps&update=true'
   - name: Correo
     image: drillster/drone-email
     settings:

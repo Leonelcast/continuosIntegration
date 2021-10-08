@@ -7,11 +7,11 @@ steps:
   - name: Sonarqube
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://tender-falcon-91.loca.lt
+      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://tall-lionfish-33.loca.lt
   - name: Quality gate
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://tender-falcon-91.loca.lt
+      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://tall-lionfish-33.loca.lt
   - name: Build WAR
     image: maven:3-jdk-11
     commands:
@@ -23,10 +23,11 @@ steps:
       - apk add curl
       - stat ventas-0.0.1-SNAPSHOT.war
       - mv  ventas-0.0.1-SNAPSHOT.war rps.war
-      - curl -v -u admin:admin -T rps.war 'http://7bda-2800-98-1112-b1b-41e7-c9ce-d2e-d4c8.ngrok.io/manager/text/deploy?path=/rps&update=true'
+      - curl -v -u admin:admin -T rps.war 'http://0b2b-2800-98-1112-b1b-46b-dcb5-866b-77f7.ngrok.io/manager/text/deploy?path=/rps&update=true'
   - name: Correo
     image: drillster/drone-email
     settings:
+      subject: pipeline
       from: castaneda161618@unis.edu.gt
       host: smtp.gmail.com
       port: 465
@@ -37,7 +38,7 @@ steps:
 
       recipients:
           - castaneda161618@unis.edu.gt
-          - jflores@unis.edu.gt
+          #- jflores@unis.edu.gt
     when:
       status:
       - success

@@ -42,5 +42,5 @@ steps:
     when:
       status:
       - success
-      - failure
+      - failure 
   

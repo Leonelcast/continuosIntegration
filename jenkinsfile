@@ -17,7 +17,7 @@ pipeline  {
             }
            
         }
-         stage('SonarQube Analysis') {
+         /*stage('SonarQube Analysis') {
             steps {
               withSonarQubeEnv('sonarQube') 
               {
@@ -67,7 +67,7 @@ pipeline  {
              sh 'mvn test'
               
              }
-        }
+        }*/
         stage('War Build') {
             steps {
              script{

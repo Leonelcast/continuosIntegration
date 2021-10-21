@@ -1,4 +1,4 @@
-kind: pipeline
+kind: Pipeline
 steps:
   - name: UnitTest
     image: maven:3-jdk-11

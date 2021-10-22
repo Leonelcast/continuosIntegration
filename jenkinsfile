@@ -97,6 +97,8 @@ pipeline  {
                    from: '', replyTo: '',
                    subject: 'Jenkins pipeline ha tenido exito', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
+                   
+                   slackSend(channel: "software", color: '#008f39', message: "El pipeline ha tenido exito y se ha realizado el deploy en el servidor")
                  }
                  failure {
                   mail bcc: '',
@@ -105,6 +107,7 @@ pipeline  {
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
                    
+                   slackSend(channel: "software", color: '#ff0000', failOnError: true, message: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n fallo en el stage: ${stageFail} \n Url del fallo: ${env.BUILD_URL} \n El pipeline ha fallado revisar los logs y que cumpla con los requisitos establecidos")
         
                  }
                }

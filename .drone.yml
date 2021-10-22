@@ -4,31 +4,10 @@ platform:
   os: linux
   arch: amd64
 steps:
-steps:
   - name: UnitTest
     image: maven:3-jdk-11
     commands:
       - mvn test
-  - name: Sonarqube
-    image: maven:3-jdk-11
-    commands:
-      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://chatty-mayfly-7.loca.lt
-  - name: Quality gate
-    image: maven:3-jdk-11
-    commands:
-      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://chatty-mayfly-7.loca.lt
-  - name: Build WAR
-    image: maven:3-jdk-11
-    commands:
-      - mvn package
-  - name: Server
-    image: alpine
-    commands:
-      - cd target/
-      - apk add curl
-      - stat ventas-0.0.1-SNAPSHOT.war
-      - mv  ventas-0.0.1-SNAPSHOT.war rps.war
-      - curl -v -u admin:admin -T rps.war 'http://db37-2800-98-1112-777-997b-c2b5-db7d-c245.ngrok.io/manager/text/deploy?path=/rps&update=true'
   - name: Correo
     image: drillster/drone-email
     settings:
@@ -48,12 +27,12 @@ steps:
       status:
       - success
       - failure 
-      branch:
-      - master
-  - name: slack
+  - name: Slack
     image: plugins/slack
     settings:
       webhook: webhook
       channel: general
     when:
-      status: [ success, failure ]    
+      status:   
+      - success
+      - failure 

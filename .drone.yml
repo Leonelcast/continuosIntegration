@@ -4,18 +4,30 @@ steps:
     image: maven:3-jdk-11
     commands:
       - mvn test
+    when:
+      branch:
+      - master  
   - name: Sonarqube
     image: maven:3-jdk-11
     commands:
       - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://mean-falcon-40.loca.lt
+    when:
+      branch:
+      - master  
   - name: Quality gate
     image: maven:3-jdk-11
     commands:
       - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://mean-falcon-40.loca.lt
+    when:
+      branch:
+      - master  
   - name: Build WAR
     image: maven:3-jdk-11
     commands:
       - mvn package
+    when:
+      branch:
+      - master  
   - name: Server
     image: alpine
     commands:
@@ -24,6 +36,9 @@ steps:
       - stat ventas-0.0.1-SNAPSHOT.war
       - mv  ventas-0.0.1-SNAPSHOT.war rps.war
       - curl -v -u admin:admin -T rps.war 'http://907f-2800-98-1112-777-39fa-7a94-9129-aac7.ngrok.io/manager/text/deploy?path=/rps&update=true'
+    when:
+      branch:
+      - master  
   - name: Correo
     image: drillster/drone-email
     settings:
@@ -43,4 +58,6 @@ steps:
       status:
       - success
       - failure 
+     branch:
+     - master
   

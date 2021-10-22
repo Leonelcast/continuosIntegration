@@ -30,7 +30,8 @@ steps:
   - name: Slack
     image: plugins/slack
     settings:
-      webhook: Siuuu
+      webhook: 
+        from_secret: Siuuu
       channel: general
     when:
       status:   

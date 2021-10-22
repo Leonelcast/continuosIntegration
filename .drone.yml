@@ -27,4 +27,12 @@ steps:
       status:
       - success
       - failure 
- 
+  - name: Slack
+    image: plugins/slack
+    settings:
+      webhook: Siuuu
+      channel: general
+    when:
+      status:   
+      - success
+      - failure 

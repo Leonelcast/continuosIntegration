@@ -58,6 +58,6 @@ steps:
       status:
       - success
       - failure 
-     branch:
-     - master
+      branch:
+      - master
   

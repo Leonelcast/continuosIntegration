@@ -1,15 +1,4 @@
-com\ventas\ventas\VentasApplicationTests.class
 com\ventas\ventas\MarcaSetetrsGettersTest.class
+com\ventas\ventas\VentasApplicationTests.class
 com\ventas\ventas\TelefonoSetterGetterTest.class
-com\ventas\ventas\CarroFacturaTest.class
-com\ventas\ventas\UsuarioTest.class
-com\ventas\ventas\AtenderClienteTest.class
-com\ventas\ventas\CorreoTest.class
 com\ventas\ventas\UsuarioSetterGetterTest.class
-com\ventas\ventas\ClienteTest.class
-com\ventas\ventas\TelefonoTest.class
-com\ventas\ventas\BusquedaTest.class
-com\ventas\ventas\HistorialTest.class
-com\ventas\ventas\PedidoTest.class
-com\ventas\ventas\TestLogin.class
-com\ventas\ventas\BoardTest.class

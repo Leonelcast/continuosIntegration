@@ -4,9 +4,64 @@ platform:
   os: linux
   arch: amd64
 steps:
-  - name: greeting
+steps:
+  - name: UnitTest
+    image: maven:3-jdk-11
+    commands:
+      - mvn test
+    when:
+      branch:
+      - master  
+  - name: Sonarqube
+    image: maven:3-jdk-11
+    commands:
+      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://mean-falcon-40.loca.lt
+    when:
+      branch:
+      - master  
+  - name: Quality gate
+    image: maven:3-jdk-11
+    commands:
+      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://mean-falcon-40.loca.lt
+    when:
+      branch:
+      - master  
+  - name: Build WAR
+    image: maven:3-jdk-11
+    commands:
+      - mvn package
+    when:
+      branch:
+      - master  
+  - name: Server
     image: alpine
     commands:
-      - echo hello
-      - echo world
-  
+      - cd target/
+      - apk add curl
+      - stat ventas-0.0.1-SNAPSHOT.war
+      - mv  ventas-0.0.1-SNAPSHOT.war rps.war
+      - curl -v -u admin:admin -T rps.war 'http://907f-2800-98-1112-777-39fa-7a94-9129-aac7.ngrok.io/manager/text/deploy?path=/rps&update=true'
+    when:
+      branch:
+      - master  
+  - name: Correo
+    image: drillster/drone-email
+    settings:
+      subject: pipeline
+      from: castaneda161618@unis.edu.gt
+      host: smtp.gmail.com
+      port: 465
+      username:
+        from_secret: Usuario
+      password: 
+        from_secret: Password
+
+      recipients:
+          - castaneda161618@unis.edu.gt
+          - jflores@unis.edu.gt
+    when:
+      status:
+      - success
+      - failure 
+      branch:
+      - master

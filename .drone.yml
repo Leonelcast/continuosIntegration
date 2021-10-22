@@ -65,3 +65,10 @@ steps:
       - failure 
       branch:
       - master
+  - name: slack
+  image: plugins/slack
+  settings:
+    webhook: https://hooks.slack.com/services/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
+    channel: general
+  when:
+    status: [ success, failure ]    

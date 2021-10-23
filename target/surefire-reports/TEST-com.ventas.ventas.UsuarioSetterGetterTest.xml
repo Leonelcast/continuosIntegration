@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <testsuite tests="1" failures="0" name="com.ventas.ventas.UsuarioSetterGetterTest" time="0.001" errors="0" skipped="0">
+=======
+<testsuite tests="1" failures="0" name="com.ventas.ventas.UsuarioSetterGetterTest" time="0.002" errors="0" skipped="0">
+>>>>>>> 3902c477964e2d0595d99d021535aa3fc8f5c7c8
   <properties>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="env.SYSTEMROOT" value="C:\WINDOWS"/>

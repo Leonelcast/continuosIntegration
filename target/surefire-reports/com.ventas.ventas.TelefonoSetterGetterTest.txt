@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.ventas.ventas.TelefonoSetterGetterTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.075 sec
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 sec
+>>>>>>> 3902c477964e2d0595d99d021535aa3fc8f5c7c8

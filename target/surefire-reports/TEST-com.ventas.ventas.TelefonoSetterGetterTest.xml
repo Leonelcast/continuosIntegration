@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <testsuite tests="1" failures="0" name="com.ventas.ventas.TelefonoSetterGetterTest" time="0.061" errors="0" skipped="0">
+=======
+<testsuite tests="1" failures="0" name="com.ventas.ventas.TelefonoSetterGetterTest" time="0.058" errors="0" skipped="0">
+>>>>>>> 3902c477964e2d0595d99d021535aa3fc8f5c7c8
   <properties>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="env.SYSTEMROOT" value="C:\WINDOWS"/>
@@ -136,5 +140,9 @@
     <property name="env.PROCESSOR_LEVEL" value="6"/>
     <property name="env.VBOX_MSI_INSTALL_PATH" value="C:\Program Files\Oracle\VirtualBox\"/>
   </properties>
+<<<<<<< HEAD
   <testcase classname="com.ventas.ventas.TelefonoSetterGetterTest" name="Testgetysetters" time="0.032"/>
+=======
+  <testcase classname="com.ventas.ventas.TelefonoSetterGetterTest" name="Testgetysetters" time="0.027"/>
+>>>>>>> 3902c477964e2d0595d99d021535aa3fc8f5c7c8
 </testsuite>

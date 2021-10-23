@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ventas.ventas.UsuarioSetterGetterTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.01 sec
->>>>>>> 3902c477964e2d0595d99d021535aa3fc8f5c7c8
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 36.57 sec

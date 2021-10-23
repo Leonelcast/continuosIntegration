@@ -11,11 +11,11 @@ steps:
   - name: Sonarqube
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=http://tender-wasp-85.loca.lt
+      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://quiet-moon-99356.pktriot.net
   - name: Quality gate
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=http://tender-wasp-85.loca.lt
+      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://quiet-moon-99356.pktriot.net
   - name: Build WAR
     image: maven:3-jdk-11
     commands:

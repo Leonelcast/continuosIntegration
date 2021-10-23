@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="com.ventas.ventas.MarcaSetetrsGettersTest" time="0.005" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="com.ventas.ventas.MarcaSetetrsGettersTest" time="0.003" errors="0" skipped="0">
   <properties>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="env.SYSTEMROOT" value="C:\WINDOWS"/>
@@ -136,6 +136,6 @@
     <property name="env.PROCESSOR_LEVEL" value="6"/>
     <property name="env.VBOX_MSI_INSTALL_PATH" value="C:\Program Files\Oracle\VirtualBox\"/>
   </properties>
-  <testcase classname="com.ventas.ventas.MarcaSetetrsGettersTest" name="Testid_marca" time="0.002"/>
-  <testcase classname="com.ventas.ventas.MarcaSetetrsGettersTest" name="Testnombre_marca" time="0.001"/>
+  <testcase classname="com.ventas.ventas.MarcaSetetrsGettersTest" name="Testid_marca" time="0.001"/>
+  <testcase classname="com.ventas.ventas.MarcaSetetrsGettersTest" name="Testnombre_marca" time="0"/>
 </testsuite>

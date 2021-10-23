@@ -1,4 +1,4 @@
-def stageFail = ''
+def stageFail= ''
 pipeline  {
     agent any
     tools { 
@@ -8,7 +8,7 @@ pipeline  {
         stage('Repo') {
             steps {
                
-                 git 'https://github.com/Leonelcast/continuosIntegration'
+                 git branch: 'dev', url: 'https://github.com/Leonelcast/continuosIntegration'
                   script{
                     stageFail=env.STAGE_NAME
                     echo "Repo"
@@ -17,7 +17,7 @@ pipeline  {
             }
            
         }
-         /*stage('SonarQube Analysis') {
+         stage('SonarQube Analysis') {
             steps {
               withSonarQubeEnv('sonarQube') 
               {
@@ -32,7 +32,7 @@ pipeline  {
                
             }
         }
-       stage("Quality Gate"){
+        stage("Quality Gate"){
                 steps {
                     script{
                             stageFail=env.STAGE_NAME
@@ -67,7 +67,7 @@ pipeline  {
              sh 'mvn test'
               
              }
-        }*/
+        }
         stage('War Build') {
             steps {
              script{
@@ -84,7 +84,7 @@ pipeline  {
                     stageFail=env.STAGE_NAME
                      echo "Server deployment"
                 }
-            deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'rps', war: '**/*.war'
+            deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'dev', war: '**/*.war'
             
         
             }
@@ -97,7 +97,6 @@ pipeline  {
                    from: '', replyTo: '',
                    subject: 'Jenkins pipeline ha tenido exito', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
-                   
                    slackSend(channel: "software", color: '#008f39', message: "El pipeline ha tenido exito y se ha realizado el deploy en el servidor")
                  }
                  failure {
@@ -107,12 +106,11 @@ pipeline  {
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
                    
-                   slackSend(channel: "software", color: '#ff0000', failOnError: true, message: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n fallo en el stage: ${stageFail} \n Url del fallo: ${env.BUILD_URL} \n El pipeline ha fallado revisar los logs y que cumpla con los requisitos establecidos")
+                  slackSend(channel: "software", color: '#ff0000', failOnError: true, message: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n fallo en el stage: ${stageFail} \n Url del fallo: ${env.BUILD_URL} \n El pipeline ha fallado revisar los logs y que cumpla con los requisitos establecidos")
+
         
                  }
                }
    
    
 }
-
-

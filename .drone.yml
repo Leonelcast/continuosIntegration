@@ -20,14 +20,39 @@ steps:
     image: maven:3-jdk-11
     commands:
       - mvn package
-  - name: Server
+  - name: Server-uat
     image: alpine
     commands:
-      - cd target/
-      - apk add curl
-      - stat ventas-0.0.1-SNAPSHOT.war
-      - mv  ventas-0.0.1-SNAPSHOT.war dev.war
-      - curl -v -u admin:admin -T dev.war 'http://5992-2800-98-1112-777-b9ab-5511-d431-8f77.ngrok.io/manager/text/deploy?path=/dev&update=true'    
+     - cd target/
+     - apk add curl
+     - stat ventas-0.0.1-SNAPSHOT.war
+     - mv  ventas-0.0.1-SNAPSHOT.war uat.war
+     - curl -v -u admin:admin -T uat.war 'https://c334-2800-98-1127-1117-18ce-f265-8fc8-f399.ngrok.io/manager/text/deploy?path=/uat&update=true'
+    when:
+     branch:
+       - uat
+  - name: Server-Dev
+    image: alpine
+    commands:
+     - cd target/
+     - apk add curl
+     - stat ventas-0.0.1-SNAPSHOT.war
+     - mv  ventas-0.0.1-SNAPSHOT.war dev.war
+     - curl -v -u admin:admin -T dev.war 'https://c334-2800-98-1127-1117-18ce-f265-8fc8-f399.ngrok.io/manager/text/deploy?path=/dev&update=true'
+    when:
+     branch:
+       - dev
+  - name: Server-Master
+    image: alpine
+    commands:
+     - cd target/
+     - apk add curl
+     - stat ventas-0.0.1-SNAPSHOT.war
+     - mv  ventas-0.0.1-SNAPSHOT.war rps.war
+     - curl -v -u admin:admin -T rps.war 'https://c334-2800-98-1127-1117-18ce-f265-8fc8-f399.ngrok.io/manager/text/deploy?path=/rps&update=true'
+    when:
+     branch:
+       - master   
   - name: Correo
     image: drillster/drone-email
     settings:

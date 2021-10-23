@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.ventas.ventas.TelefonoTest" time="44.255" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.ventas.ventas.TelefonoTest" time="32.75" errors="0" skipped="0">
   <properties>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="env.SYSTEMROOT" value="C:\WINDOWS"/>
@@ -34,7 +34,7 @@
     <property name="com.zaxxer.hikari.pool_number" value="1"/>
     <property name="env.VSCODE_GIT_ASKPASS_MAIN" value="c:\Users\leone\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\git\dist\askpass-main.js"/>
     <property name="CONSOLE_LOG_CHARSET" value="windows-1252"/>
-    <property name="PID" value="5408"/>
+    <property name="PID" value="6932"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.version" value="11.0.11"/>
     <property name="env.PROCESSOR_IDENTIFIER" value="Intel64 Family 6 Model 142 Stepping 12, GenuineIntel"/>
@@ -72,7 +72,7 @@
     <property name="env.PROGRAMFILES" value="C:\Program Files"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="env.CHROME_CRASHPAD_PIPE_NAME" value="\\.\pipe\crashpad_4424_ZMHAUBPGWJPXWPQQ"/>
+    <property name="env.CHROME_CRASHPAD_PIPE_NAME" value="\\.\pipe\crashpad_12584_ZFIMCIQTJTORPOJD"/>
     <property name="sun.stdout.encoding" value="cp850"/>
     <property name="user.script" value=""/>
     <property name="user.home" value="C:\Users\leone"/>
@@ -90,12 +90,12 @@
     <property name="env.COMMONPROGRAMFILES(X86)" value="C:\Program Files (x86)\Common Files"/>
     <property name="env.CLASSWORLDS_LAUNCHER" value="org.codehaus.plexus.classworlds.launcher.Launcher"/>
     <property name="env.PSMODULEPATH" value="C:\Users\leone\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules"/>
-    <property name="env.MAVEN_CMD_LINE_ARGS" value="test"/>
+    <property name="env.MAVEN_CMD_LINE_ARGS" value="clean package"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="maven.home" value="C:\Program Files\apache-maven-3.8.1\bin\.."/>
     <property name="java.class.path" value="C:\Program Files\apache-maven-3.8.1\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean package"/>
     <property name="env.PROGRAMW6432" value="C:\Program Files"/>
     <property name="maven.version" value="3.8.1"/>
     <property name="jdk.debug" value="release"/>
@@ -142,5 +142,5 @@
     <property name="env.PROCESSOR_LEVEL" value="6"/>
     <property name="env.VBOX_MSI_INSTALL_PATH" value="C:\Program Files\Oracle\VirtualBox\"/>
   </properties>
-  <testcase classname="com.ventas.ventas.TelefonoTest" name="crearTelefonoTest" time="0.056"/>
+  <testcase classname="com.ventas.ventas.TelefonoTest" name="crearTelefonoTest" time="0.061"/>
 </testsuite>

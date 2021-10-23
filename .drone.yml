@@ -11,11 +11,11 @@ steps:
   - name: Sonarqube
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://itchy-robin-12.loca.lt
+      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://plastic-gecko-2.loca.lt
   - name: Quality gate
     image: maven:3-jdk-11
     commands:
-      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://itchy-robin-12.loca.lt
+      - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://plastic-gecko-2.loca.lt
   - name: Build WAR
     image: maven:3-jdk-11
     commands:
@@ -27,7 +27,7 @@ steps:
      - apk add curl
      - stat ventas-0.0.1-SNAPSHOT.war
      - mv  ventas-0.0.1-SNAPSHOT.war uat.war
-     - curl -v -u admin:admin -T uat.war 'https://c334-2800-98-1127-1117-18ce-f265-8fc8-f399.ngrok.io/manager/text/deploy?path=/uat&update=true'
+     - curl -v -u admin:admin -T uat.war 'http://0373-2800-98-1112-777-483b-fc7c-1b3c-c790.ngrok.io/manager/text/deploy?path=/uat&update=true'
     when:
      branch:
        - uat
@@ -38,7 +38,7 @@ steps:
      - apk add curl
      - stat ventas-0.0.1-SNAPSHOT.war
      - mv  ventas-0.0.1-SNAPSHOT.war dev.war
-     - curl -v -u admin:admin -T dev.war 'https://c334-2800-98-1127-1117-18ce-f265-8fc8-f399.ngrok.io/manager/text/deploy?path=/dev&update=true'
+     - curl -v -u admin:admin -T dev.war 'http://0373-2800-98-1112-777-483b-fc7c-1b3c-c790.ngrok.io/manager/text/deploy?path=/dev&update=true'
     when:
      branch:
        - dev
@@ -49,7 +49,7 @@ steps:
      - apk add curl
      - stat ventas-0.0.1-SNAPSHOT.war
      - mv  ventas-0.0.1-SNAPSHOT.war rps.war
-     - curl -v -u admin:admin -T rps.war 'https://c334-2800-98-1127-1117-18ce-f265-8fc8-f399.ngrok.io/manager/text/deploy?path=/rps&update=true'
+     - curl -v -u admin:admin -T rps.war 'http://0373-2800-98-1112-777-483b-fc7c-1b3c-c790.ngrok.io/manager/text/deploy?path=/rps&update=true'
     when:
      branch:
        - master   

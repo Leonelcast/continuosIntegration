@@ -8,13 +8,10 @@ steps:
     image: maven:3-jdk-11
     commands:
       - mvn test
-  - name: code-analysis
-    image: aosapps/drone-sonar-plugin
-    settings:
-      sonar_host:
-        from_secret: sonar_host
-      sonar_token:
-        from_secret: sonar_token
+  - name: Sonarqube
+    image: maven:3-jdk-11
+    commands:
+      - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=BOOTstrap2021 -Dsonar.host.url=https://massive-wombat-13.loca.lt
   - name: Quality gate
     image: maven:3-jdk-11
     commands:

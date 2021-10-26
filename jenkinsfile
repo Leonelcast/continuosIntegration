@@ -84,11 +84,7 @@ pipeline  {
                     stageFail=env.STAGE_NAME
                      echo "Server deployment"
                 }
-<<<<<<< HEAD
             deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'dev', war: '**/*.war'
-=======
-            deploy adapters: [tomcat9(credentialsId: '6f23dec0-249f-4fc4-9eda-7aff5847abe0', path: '', url: 'http://192.168.1.10:8085/')], contextPath: 'uat', war: '**/*.war'
->>>>>>> 3902c477964e2d0595d99d021535aa3fc8f5c7c8
             
         
             }
@@ -101,6 +97,8 @@ pipeline  {
                    from: '', replyTo: '',
                    subject: 'Jenkins pipeline ha tenido exito', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
+
+                   slackSend(channel: "software", color: '#008f39', message: "El pipeline ha tenido exito y se ha realizado el deploy en el servidor")
                  }
                  failure {
                   mail bcc: '',
@@ -109,7 +107,8 @@ pipeline  {
                    subject: 'Pipeline fallo', 
                    to: 'jflores@unis.edu.gt, castaneda161618@unis.edu.gt'
                    
-        
+                   slackSend(channel: "software", color: '#ff0000', failOnError: true, message: "Project: ${env.JOB_NAME} \n Build Number: ${env.BUILD_NUMBER} \n fallo en el stage: ${stageFail} \n Url del fallo: ${env.BUILD_URL} \n El pipeline ha fallado revisar los logs y que cumpla con los requisitos establecidos")
+ 
                  }
                }
    
